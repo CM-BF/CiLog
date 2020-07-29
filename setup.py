@@ -11,7 +11,7 @@ setuptools.setup(
     description="CiLog is a flexible integrated logging tool base on package logging.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="",
+    url="https://github.com/CM-BF/CiLog/",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",

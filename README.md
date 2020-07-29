@@ -39,4 +39,6 @@ Please refer to CustomFormatter and url: https://docs.python.org/3/library/loggi
 
 return: logger : logging.Logger
 
-## 
+## LICENSE
+
+See [MIT LICENSE](https://github.com/CM-BF/CiLog/blob/master/LICENSE)
