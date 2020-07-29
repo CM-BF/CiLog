@@ -94,6 +94,7 @@ class FileFormatter(CustomFormatter):
 def create_logger(**kwargs) -> logging.Logger:
     """
     Create logger for logging
+    :param Require[name] : str - logger name
     :param Optional[file] : str - File path
     :param Optional[file_mode] : str - File open mode. Default: 'a'
     :param Optional[file_level] : Literal['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'] - Default 'INFO'
@@ -104,6 +105,9 @@ def create_logger(**kwargs) -> logging.Logger:
     Please refer to CustomFormatter and url: https://docs.python.org/3/library/logging.html#logrecord-attributes
     :return: logger : logging.Logger
     """
+
+    if 'name' not in kwargs.keys():
+        raise Exception('param [name] must be specified.')
 
     if 'file_level' not in kwargs.keys():
         kwargs['file_level'] = 'INFO'
@@ -122,7 +126,7 @@ def create_logger(**kwargs) -> logging.Logger:
 
 
     # create logger
-    logger = logging.getLogger('GNN_benchmark')
+    logger = logging.getLogger(kwargs['name'])
     logger.setLevel(logging.DEBUG)
 
     # console handler and its formatter

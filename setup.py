@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="cilog",
-    version="0.0.1",
+    version="0.0.2",
     author="Shurui Gui",
     author_email="citrinegui@gmail.com",
     description="CiLog is a flexible integrated logging tool base on package logging.",

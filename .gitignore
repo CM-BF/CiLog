@@ -1,3 +1,6 @@
 test.py
 log.log
 cilog/__pycache__/**
+cilog.egg-info/**
+dist/**
+build/**
