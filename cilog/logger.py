@@ -2,7 +2,7 @@
 FileName: logger.py
 Description: 
 Time: 2020/7/28 15:18
-Project: GNN_benchmark
+Project: CiLog
 Author: Shurui Gui
 """
 

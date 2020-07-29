@@ -4,3 +4,5 @@ cilog/__pycache__/**
 cilog.egg-info/**
 dist/**
 build/**
+upload.sh
+build.sh

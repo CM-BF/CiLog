@@ -34,7 +34,8 @@ Optional[**use_color**] : bool - Signal for using colored info. Default False
 Optional[**stack_level**] : Literal['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'] - Default 'ERROR'
 
 Optional[**msg_fmt**] : Dict{'DEBUG': debug_fmt, 'INFO': info_fmt, 'WARNING': warning_fmt,
-'ERROR': error_fmt, 'CRITICAL': critical_fmt} - Custom design massage format.
+'ERROR': error_fmt, 'CRITICAL': critical_fmt} - Custom design massage format. 
+(Specially, you can use $BOLD **text** $RESET to use bold font)
 Please refer to CustomFormatter and url: https://docs.python.org/3/library/logging.html#logrecord-attributes
 
 return: logger : logging.Logger
