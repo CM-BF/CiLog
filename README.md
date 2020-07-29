@@ -8,6 +8,12 @@ CiLog is a flexible integrated logging tool with color and custom bold font base
 * setting stack info output level
 * easier way to custom format for each level
 
+## Install
+
+```bash
+$ pip install cilog
+```
+
 ## Basic Usage
 
 ```python
