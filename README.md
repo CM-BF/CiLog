@@ -17,9 +17,9 @@ $ pip install cilog
 ## Basic Usage
 
 ```python
-from cilog.logger import create_logger
+from cilog import create_logger
 
-logger = create_logger(use_color=True)
+logger = create_logger(name='name', use_color=True)
 logger.info('start')
 logger.debug('here')
 logger.warning('warn')
