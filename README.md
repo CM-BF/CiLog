@@ -17,15 +17,22 @@ $ pip install cilog
 ## Basic Usage
 
 ```python
-from cilog import create_logger
+from cilog.logger import create_logger
 
-logger = create_logger(name='name', use_color=True)
+
+def call_error():
+    logger.error('Exception')
+
+logger = create_logger(name='l1', file='./log.log', use_color=True, ipt_info=True)
 logger.info('start')
 logger.debug('here')
 logger.warning('warn')
-logger.error('Exception')
-logger.critical('fatal error')
+call_error()
+logger.critical('Program exit.')
 ```
+
+-- Result:
+![result](https://github.com/CM-BF/CiLog/blob/master/result.png)
 
 `create_logger` keywords:
 
@@ -38,6 +45,8 @@ Optional[**file_level**] : Literal['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICA
 Optional[**use_color**] : bool - Signal for using colored info. Default False
 
 Optional[**stack_level**] : Literal['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'] - Default 'ERROR'
+
+**(New feature)** Optional[ipt_info]: bool - Signal for using CRITICAL as important massage without stack_info.
 
 Optional[**msg_fmt**] : Dict{'DEBUG': debug_fmt, 'INFO': info_fmt, 'WARNING': warning_fmt,
 'ERROR': error_fmt, 'CRITICAL': critical_fmt} - Custom design massage format. 

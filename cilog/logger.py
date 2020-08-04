@@ -43,11 +43,12 @@ def bold_msg(message, use_color):
 
 class CustomFormatter(logging.Formatter):
 
-    def __init__(self, use_color, stack_level, msg_fmt=None, file=False):
+    def __init__(self, use_color, stack_level, msg_fmt=None, file=False, ipt_info=False):
         super().__init__("%(levelno)s: %(msg)s")
         self.use_color = use_color if not file else False
         self.stack_level = stack_level
         self._stack_prune = -8 if not file else -9
+        self.ipt_info = ipt_info
         self.msg_fmt = msg_fmt if msg_fmt != None else \
             {
             'DEBUG': "%(levelname)s: %(asctime)s : $BOLD%(message)s$RESET",
@@ -65,13 +66,15 @@ class CustomFormatter(logging.Formatter):
         # set for different levels
         format_orig = self._style._fmt
         self._style._fmt = self.msg_fmt[record.levelname]
-        if record.levelno >= self.stack_level:
+        if record.levelno >= self.stack_level and not(self.ipt_info and record.levelno == 50):
             record.stack_info = ''.join(StackSummary.from_list(extract_stack()[:self._stack_prune]).format())
 
         # make it colorful
         levelname = record.levelname
+        if self.ipt_info and record.levelno == 50:
+            record.levelname = 'IMPORTANT'
         if self.use_color and levelname in COLORS:
-            levelname_color = COLOR_SEQ % (30 + COLORS[levelname]) + levelname + RESET_SEQ
+            levelname_color = COLOR_SEQ % (30 + COLORS[levelname]) + record.levelname + RESET_SEQ
             record.levelname = levelname_color
 
         self.datefmt = '%m/%d/%Y %I:%M:%S %p'
@@ -85,10 +88,10 @@ class CustomFormatter(logging.Formatter):
 
 class FileFormatter(CustomFormatter):
 
-    def __init__(self, stack_level, msg_fmt=None):
+    def __init__(self, stack_level, msg_fmt=None, ipt_info=False):
         __file = True
         __use_color = False
-        super().__init__(__use_color, stack_level, msg_fmt=msg_fmt, file=__file)
+        super().__init__(__use_color, stack_level, msg_fmt=msg_fmt, file=__file, ipt_info=ipt_info)
 
 
 def create_logger(**kwargs) -> logging.Logger:
@@ -100,29 +103,21 @@ def create_logger(**kwargs) -> logging.Logger:
     :param Optional[file_level] : Literal['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'] - Default 'INFO'
     :param Optional[use_color] : bool - Signal for using colored info. Default False
     :param Optional[stack_level] : Literal['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'] - Default 'ERROR'
+    :param Optional[ipt_info]: bool - Signal for using CRITICAL as important massage without stack_info.
     :param Optional[msg_fmt] : Dict{'DEBUG': debug_fmt, 'INFO': info_fmt, 'WARNING': warning_fmt,
     'ERROR': error_fmt, 'CRITICAL': critical_fmt} - Custom design massage format.
     Please refer to CustomFormatter and url: https://docs.python.org/3/library/logging.html#logrecord-attributes
     :return: logger : logging.Logger
     """
 
-    if 'name' not in kwargs.keys():
+    if not kwargs.get('name'):
         raise Exception('param [name] must be specified.')
 
-    if 'file_level' not in kwargs.keys():
-        kwargs['file_level'] = 'INFO'
-
-    if 'use_color' not in kwargs.keys():
-        kwargs['use_color'] = False
-
-    if 'file_mode'  not in kwargs.keys():
-        kwargs['file_mode'] = 'a'
-
-    if 'stack_level' not in kwargs.keys():
-        kwargs['stack_level'] = 'ERROR'
-
-    kwargs['file_level'] = s2l[kwargs['file_level']]
-    kwargs['stack_level'] = s2l[kwargs['stack_level']]
+    kwargs['file_level'] = s2l[kwargs.get('file_level') or 'INFO']
+    kwargs['use_color'] = kwargs.get('use_color') or False
+    kwargs['file_mode'] = kwargs.get('file_mode') or 'a'
+    kwargs['stack_level'] = s2l[kwargs.get('stack_level') or 'ERROR']
+    kwargs['ipt_info'] = kwargs.get('ipt_info') or False
 
 
     # create logger
@@ -133,7 +128,8 @@ def create_logger(**kwargs) -> logging.Logger:
     ch = logging.StreamHandler()
     ch.setLevel(logging.DEBUG)
     cformatter = CustomFormatter(use_color=kwargs['use_color'],
-                                 stack_level=kwargs['stack_level'])
+                                 stack_level=kwargs['stack_level'],
+                                 ipt_info=kwargs['ipt_info'])
     ch.setFormatter(cformatter)
     logger.addHandler(ch)
 
@@ -141,7 +137,7 @@ def create_logger(**kwargs) -> logging.Logger:
     if 'file' in kwargs.keys():
         fh = logging.FileHandler(kwargs['file'], mode=kwargs['file_mode'])
         fh.setLevel(kwargs['file_level'])
-        fformatter = FileFormatter(stack_level=kwargs['stack_level'])
+        fformatter = FileFormatter(stack_level=kwargs['stack_level'], ipt_info=kwargs['ipt_info'])
         fh.setFormatter(fformatter)
         logger.addHandler(fh)
 
