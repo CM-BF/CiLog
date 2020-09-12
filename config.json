@@ -1,0 +1,18 @@
+{
+    "log_name": "cilog",
+    "mail_setting": {
+        "mailhost": [
+            "your mail host",
+            "host port (INTEGER)"
+        ],
+        "fromaddr": "sender addr",
+        "toaddrs": [
+            "receiver addr"
+        ],
+        "subject": "CiLog",
+        "credentials": [
+            "sender addr",
+            "sender password"
+        ]
+    }
+}

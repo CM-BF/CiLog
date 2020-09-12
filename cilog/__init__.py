@@ -1,1 +1,1 @@
-from cilog.logger import create_logger
+from cilog.api import create_logger, json_mail_setting

@@ -1,0 +1,47 @@
+KJLDKJSKLJKFL
+MAIL: 09/12/2020 06:28:37 PM : Task python ../test2.py completed.
+  File "/home/citrine/.pycharm_helpers/pydev/pydevconsole.py", line 485, in <module>
+    pydevconsole.start_server(port)
+  File "/home/citrine/.pycharm_helpers/pydev/pydevconsole.py", line 381, in start_server
+    process_exec_queue(interpreter)
+  File "/home/citrine/.pycharm_helpers/pydev/pydevconsole.py", line 258, in process_exec_queue
+    more = interpreter.add_exec(code_fragment)
+  File "/home/citrine/.pycharm_helpers/pydev/_pydev_bundle/pydev_code_executor.py", line 106, in add_exec
+    more = self.do_add_exec(code_fragment)
+  File "/home/citrine/.pycharm_helpers/pydev/pydevconsole.py", line 84, in do_add_exec
+    command.run()
+  File "/home/citrine/.pycharm_helpers/pydev/_pydev_bundle/pydev_console_types.py", line 35, in run
+    self.more = self.interpreter.runsource(text, '<input>', symbol)
+  File "/home/citrine/anaconda3/envs/torch_v1.5/lib/python3.8/code.py", line 74, in runsource
+    self.runcode(code)
+  File "/home/citrine/anaconda3/envs/torch_v1.5/lib/python3.8/code.py", line 90, in runcode
+    exec(code, self.locals)
+  File "<input>", line 1, in <module>
+  File "/home/citrine/.pycharm_helpers/pydev/_pydev_bundle/pydev_umd.py", line 197, in runfile
+    pydev_imports.execfile(filename, global_vars, local_vars)  # execute the script
+  File "/home/citrine/.pycharm_helpers/pydev/_pydev_imps/_pydev_execfile.py", line 18, in execfile
+    exec(compile(contents+"\n", file, 'exec'), glob, loc)
+  File "/home/citrine/Projects/citrine/CiLog/cilog/scripts.py", line 59, in <module>
+    logger.mail(f'Task {" ".join(cmd)} completed.')
+
+pydev debugger: process 16802 is connecting
+
+KJLDKJSKLJKFL
+Python 2.7.17 (default, Jul 20 2020, 15:37:01) 
+[GCC 7.5.0] on linux2
+Traceback (most recent call last):
+  File "/home/citrine/.pycharm_helpers/pydev/_pydevd_bundle/pydevd_exec.py", line 3, in Exec
+    exec exp in global_vars, local_vars
+  File "<input>", line 1, in <module>
+NameError: name 'd' is not defined
+Traceback (most recent call last):
+  File "/home/citrine/.pycharm_helpers/pydev/pydevd.py", line 2127, in <module>
+    main()
+  File "/home/citrine/.pycharm_helpers/pydev/pydevd.py", line 2124, in main
+    debugger.wait_for_commands(globals)
+  File "/home/citrine/.pycharm_helpers/pydev/pydevd.py", line 1481, in wait_for_commands
+    time.sleep(0.01)
+KeyboardInterrupt
+pydev debugger: process 16835 is connecting
+
+KJLDKJSKLJKFL
