@@ -76,6 +76,7 @@ class CustomLogger(logging.Logger):
         return
 
 def print_flush(*values, sep=' ', end='\n', file=None, flush=True):
+    sys.stdout.flush()
     CustomLogger.print(*values, sep=sep, end=end, file=file, flush=flush)
 
         # def log_print(*values, sep=' ', end='\n', file=sys.stdout, flush=False):

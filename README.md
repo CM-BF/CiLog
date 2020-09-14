@@ -19,6 +19,8 @@ $ pip install cilog
 
 ## New Features
 
+### 1.0.2
+* Bug fixed
 
 ### 1.0.1
 * Bug fixed

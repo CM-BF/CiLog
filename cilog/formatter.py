@@ -59,6 +59,20 @@ class CustomFormatter(logging.Formatter):
         # set for different levels
         format_orig = self._style._fmt
         self._style._fmt = self.msg_fmt[record.levelname]
+
+        # preprocess \n
+        line_count = 0
+        for s in record.msg:
+            if s == '\n':
+                line_count += 1
+                record.msg = record.msg[1:]
+            else:
+                break
+        if record.msg:
+            self._style._fmt = line_count * '\n' + self._style._fmt
+        else:
+            self._style._fmt = line_count * '\n'
+
         if record.levelno >= self.stack_level and record.levelno != logging.MAIL:
             record.stack_info = ''.join(StackSummary.from_list(extract_stack()[:self._stack_prune]).format())
 
