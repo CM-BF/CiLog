@@ -10,7 +10,9 @@ import logging
 import re
 import sys
 import builtins
+from functools import partial
 from cilog.utils import CiLogStdOut
+
 
 logging.IMPORTANT = 35
 logging.MAIL = 60
@@ -32,6 +34,7 @@ logging.addLevelName(logging.MAIL, 'MAIL')
 
 # ------------------------------ set new levels --------------------------------
 class CustomLogger(logging.Logger):
+    print = builtins.print
 
     def __init__(self, name, level=logging.NOTSET):
         super().__init__(name, level=logging.NOTSET)
@@ -62,9 +65,18 @@ class CustomLogger(logging.Logger):
 
     def substitute_print(self):
 
+        builtins.print = print_flush
+
         return CiLogStdOut(self)
 
+    def restore_print(self):
 
+        builtins.print = CustomLogger.print
+
+        return
+
+def print_flush(*values, sep=' ', end='\n', file=None, flush=True):
+    CustomLogger.print(*values, sep=sep, end=end, file=file, flush=flush)
 
         # def log_print(*values, sep=' ', end='\n', file=sys.stdout, flush=False):
         #     if end != '\n' or file != sys.stdout or flush != False:

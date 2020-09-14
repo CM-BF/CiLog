@@ -42,7 +42,7 @@ if not os.path.exists(config_filename):
                     default_config)
         print(f'\nDefault config file does not exist.\n'
               f'-------------------------------------\n'
-              f'{default_config} is automatically added, please config it!')
+              f'{default_config} is automatically added, please configure it!')
         exit(0)
     else:
         raise FileNotFoundError(f'Config file {config_filename} Not Found.')

@@ -1,9 +1,5 @@
 # CiLog
 
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/CiLog)](https://pypi.org/project/cilog/)
-[![PyPI](https://img.shields.io/pypi/v/CiLog)](https://pypi.org/project/cilog/)
-[![PyPI - License](https://img.shields.io/pypi/l/CiLog)](https://github.com/CM-BF/CiLog/blob/master/LICENSE)
-
 CiLog is a flexible integrated logging tool with color and custom bold font base on package logging.
 
 ## Feature
@@ -22,6 +18,10 @@ $ pip install cilog
 ```
 
 ## New Features
+
+
+### 1.0.1
+* Bug fixed
 
 ### 1.0.0
 * Develop print function substitute function. Now you can directly

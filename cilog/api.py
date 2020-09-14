@@ -100,6 +100,7 @@ def create_logger(name: str = 'CiLog',
 
     if sub_print:
         logger.substitute_print()
+        logging.StreamHandler.terminator = ''
 
     return logger
 

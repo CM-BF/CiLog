@@ -33,21 +33,26 @@ class CiLogStdOut(object):
         sys.stdout = self
         sys.stderr = self
         self.logger = logger
+        self.buffer = ''
 
     def write(self, string):
 
-        if string == '\n':
-            return
-
-        for level in ['debug', 'important', 'warning', 'error', 'critical', 'mail']:
-            match = re.match(str2mark(level), string)
-            if match:
-                getattr(self.logger, level)(string[match.span()[1]:])
-                return
-
-        self.logger.info(string)
+        self.buffer += string
 
     def flush(self):
+        if not self.buffer:
+            return
+
+        buffer = self.buffer
+        self.buffer = ''
+
+        for level in ['debug', 'important', 'warning', 'error', 'critical', 'mail']:
+            match = re.match(str2mark(level), buffer)
+            if match:
+                getattr(self.logger, level)(buffer[match.span()[1]:])
+                return
+
+        self.logger.info(buffer)
         return
 
 
