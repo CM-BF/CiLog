@@ -12,7 +12,6 @@ import sys
 import builtins
 from functools import partial
 from cilog.utils import CiLogStdOut
-from prettytable import PrettyTable, MARKDOWN
 from pandas import DataFrame
 import ast
 
@@ -107,13 +106,6 @@ class CustomLogger(logging.Logger):
 
             if format == 'latex':
                 table = df.to_latex(index=False)
-            # table = PrettyTable()
-            # table.field_names = list_table[0]
-            # for row_index in range(1, len(list_table)):
-            #     table.add_row(list_table[row_index])
-            #
-            # if format == 'markdown':
-            #     table.set_style(MARKDOWN)
 
             self._log(logging.ORIGIN, table, args, **kwargs)
             self._log(logging.ORIGIN, '\n', args, **kwargs)
