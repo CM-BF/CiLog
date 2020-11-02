@@ -18,8 +18,8 @@ from definitions import ROOT_DIR
 
 
 def signal_process():
-    # os.setsid()
-    signal.signal(signal.SIGHUP, signal.SIG_IGN)
+    os.setsid()
+    # signal.signal(signal.SIGHUP, signal.SIG_IGN)
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-c', type=str, default='~/.cilog/config.json', help='Config file')

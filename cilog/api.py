@@ -12,6 +12,7 @@ from cilog.handler import CustomFileHandler
 from cilog.formatter import CustomFormatter, FileFormatter
 import sys
 import re
+import time
 
 
 
@@ -22,6 +23,7 @@ def create_logger(name: str = 'CiLog',
                   enable_mail: bool = False,
                   use_color: bool = True,
                   sub_print: bool = False,
+                  use_printc: bool = False,
                   **kwargs) -> CustomLogger:
     """
     Create Custom Cilog for logging.
@@ -101,6 +103,8 @@ def create_logger(name: str = 'CiLog',
     if sub_print:
         logger.substitute_print()
         logging.StreamHandler.terminator = ''
+        return
+
 
     return logger
 
@@ -109,6 +113,17 @@ def json_mail_setting(mail_setting):
     mail_setting["mailhost"] = tuple(mail_setting["mailhost"])
     mail_setting["credentials"] = tuple(mail_setting["credentials"])
     return mail_setting
+
+class timeit(object):
+
+    def __init__(self, time_name):
+        self.time_name = time_name
+
+    def __enter__(self):
+        self.start = time.time()
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        print(f'{self.time_name}: {time.time() - self.start}s')
 
 
 

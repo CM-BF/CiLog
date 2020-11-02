@@ -43,6 +43,7 @@ class CustomFormatter(logging.Formatter):
         self._stack_prune = -8 if not file else -9
         self.msg_fmt = msg_fmt or \
             {
+                'ORIGIN': "%(message)s",
                 'DEBUG': "%(levelname)s: %(asctime)s : $BOLD%(message)s$RESET",
                 'INFO': "%(levelname)s: $BOLD%(message)s$RESET",
                 'WARNING': "%(levelname)s: %(filename)s - line %(lineno)d : $BOLD%(message)s$RESET",

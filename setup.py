@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="cilog",
-    version="1.0.2",
+    version="1.1.0",
     author="Shurui Gui",
     author_email="citrinegui@gmail.com",
     entry_points={

@@ -46,13 +46,13 @@ class CiLogStdOut(object):
         buffer = self.buffer
         self.buffer = ''
 
-        for level in ['debug', 'important', 'warning', 'error', 'critical', 'mail']:
+        for level in ['debug', 'info', 'important', 'table_fromlist', 'warning', 'error', 'critical', 'mail']:
             match = re.match(str2mark(level), buffer)
             if match:
                 getattr(self.logger, level)(buffer[match.span()[1]:])
                 return
 
-        self.logger.info(buffer)
+        self.logger.origin(buffer)
         return
 
 
