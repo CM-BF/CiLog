@@ -11,8 +11,14 @@ import re
 import sys
 import builtins
 from functools import partial
+import os
 from cilog.utils import CiLogStdOut
-from pandas import DataFrame
+try:
+    import pandas
+except:
+    os.system('pip install pandas --upgrade')
+    os.system('pip install tabulate --upgrade')
+    import pandas
 import ast
 
 
@@ -99,10 +105,15 @@ class CustomLogger(logging.Logger):
                 for i, key in enumerate(table_dict.keys()):
                     table_dict[key].append(row[i])
 
-            df = DataFrame(table_dict)
+            df = pandas.DataFrame(table_dict)
 
             if format == 'markdown':
-                table = df.to_markdown(index=False)
+                try:
+                    table = df.to_markdown(index=False)
+                except:
+                    print('#W#pandas version too low.')
+                    os.system('pip install pandas --upgrade')
+                    table = df.to_markdown(index=False)
 
             if format == 'latex':
                 table = df.to_latex(index=False)
