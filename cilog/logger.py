@@ -12,13 +12,8 @@ import sys
 import builtins
 from functools import partial
 import os
-from cilog.utils import CiLogStdOut
-try:
-    import pandas
-except:
-    os.system('pip install pandas --upgrade')
-    os.system('pip install tabulate --upgrade')
-    import pandas
+from cilog.utils import CiLogStdOut, CiLogStdErr
+import pandas
 import ast
 
 
@@ -108,12 +103,7 @@ class CustomLogger(logging.Logger):
             df = pandas.DataFrame(table_dict)
 
             if format == 'markdown':
-                try:
-                    table = df.to_markdown(index=False)
-                except:
-                    print('#W#pandas version too low.')
-                    os.system('pip install pandas --upgrade')
-                    table = df.to_markdown(index=False)
+                table = df.to_markdown(index=False)
 
             if format == 'latex':
                 table = df.to_latex(index=False)
@@ -137,8 +127,8 @@ class CustomLogger(logging.Logger):
     def substitute_print(self):
 
         builtins.print = print_flush
-
-        return CiLogStdOut(self)
+        CiLogStdOut(self)
+        CiLogStdErr(self)
 
     def restore_print(self):
 

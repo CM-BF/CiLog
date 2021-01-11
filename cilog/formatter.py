@@ -40,7 +40,7 @@ class CustomFormatter(logging.Formatter):
         super().__init__("%(levelno)s: %(msg)s")
         self.use_color = use_color if not file else False
         self.stack_level = stack_level
-        self._stack_prune = -8 if not file else -9
+        self._stack_prune = -10 if not file else -11
         self.msg_fmt = msg_fmt or \
             {
                 'ORIGIN': "%(message)s",
@@ -74,8 +74,8 @@ class CustomFormatter(logging.Formatter):
         else:
             self._style._fmt = line_count * '\n'
 
-        if record.levelno >= self.stack_level and record.levelno != logging.MAIL:
-            record.stack_info = ''.join(StackSummary.from_list(extract_stack()[:self._stack_prune]).format())
+        if record.levelno >= self.stack_level and record.levelno != logging.MAIL and record.msg[:9] != 'Traceback':
+            record.stack_info = ''.join(StackSummary.from_list(extract_stack()[:self._stack_prune]).format())# self._stack_prune
 
         # make it colorful
         levelname = record.levelname

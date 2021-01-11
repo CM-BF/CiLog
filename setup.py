@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="cilog",
-    version="1.1.3",
+    version="1.2.1",
     author="Shurui Gui",
     author_email="citrinegui@gmail.com",
     entry_points={
@@ -13,8 +13,7 @@ setuptools.setup(
             'cilog=cilog.launcher:launcher'
         ]
     },
-    description="CiLog is a flexible integrated logging tool base on package logging that can substitute builtins.print"
-                " directly.",
+    description="CiLog is a flexible integrated logging tool",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/CM-BF/CiLog/",
@@ -24,5 +23,6 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
+    install_requires=['pandas', 'tabulate', 'openpyxl'],
     python_requires='>=3.6',
 )

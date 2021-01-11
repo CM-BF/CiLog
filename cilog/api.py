@@ -10,8 +10,12 @@ from logging.handlers import SMTPHandler
 from cilog.logger import CustomLogger, s2l
 from cilog.handler import CustomFileHandler
 from cilog.formatter import CustomFormatter, FileFormatter
-import sys
+from openpyxl import Workbook, load_workbook
+from openpyxl.utils import get_column_letter
+import os
+import copy
 import re
+import sys
 import time
 
 
@@ -23,7 +27,6 @@ def create_logger(name: str = 'CiLog',
                   enable_mail: bool = False,
                   use_color: bool = True,
                   sub_print: bool = False,
-                  use_printc: bool = False,
                   **kwargs) -> CustomLogger:
     """
     Create Custom Cilog for logging.
@@ -124,6 +127,87 @@ class timeit(object):
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         print(f'{self.time_name}: {time.time() - self.start}s')
+
+
+def fill_table(excel_path, value, x, y, z, table_format: list, *args, **kwargs):
+    file = os.path.abspath(os.fspath(excel_path))
+    file_path, file_name_ext = os.path.split(file)
+    if not os.path.exists(file_path):
+        os.makedirs(file_path)
+    if not os.path.exists(file):
+        excel = Workbook()
+        assert 1 <= len(table_format) <= 3, "table_format should have length l should be 1 <= l <= 3, " \
+                                       "[row label list, column label list, sheet label list]"
+        if len(table_format) < 3:
+            table_format += [None] * (3 - len(table_format))
+
+        # --- first sheet ---
+        first_sheet = excel.worksheets[0]
+
+        # --- row labels ---
+        for ri, row_label in enumerate(table_format[0]):
+            if table_format[1] is not None:
+                row_idx = ri + 2
+            else:
+                row_idx = ri + 1
+            first_sheet.cell(row_idx, 1).value = row_label
+
+        # --- column labels ---
+        if table_format[1] is not None:
+            for ci, column_label in enumerate(table_format[1]):
+                column_idx = ci + 2
+                first_sheet.cell(1, column_idx).value = column_label
+
+            # --- sheet labels ---
+            if table_format[2] is not None:
+                for si, sheet_label in enumerate(table_format[2]):
+                    if si == 0:
+                        excel.worksheets[0].title = sheet_label
+                        continue
+                    excel.copy_worksheet(first_sheet).title = sheet_label
+
+        excel.save(file)
+        excel.close()
+
+    # --- add value ---
+    excel = load_workbook(file)
+    if table_format[2] is None:
+        target_sheet = excel.worksheets[0]
+    else:
+        try:
+            target_sheet = excel.get_sheet_by_name(z)
+        except Exception as e:
+            raise Exception(f'{e}\n'
+                  f'{z} is not in the table_format[2].')
+
+    if table_format[1] is None:
+        try:
+            row_idx = table_format[0].index(x) + 1
+        except Exception as e:
+            raise Exception(f'{e}\n'
+                            f'{x} is not in the table_format[0].')
+        column_idx = 2
+    else:
+        try:
+            row_idx = table_format[0].index(x) + 2
+        except Exception as e:
+            raise Exception(f'{e}\n'
+                            f'{x} is not in the table_format[0].')
+        try:
+            column_idx = table_format[1].index(y) + 2
+        except Exception as e:
+            raise Exception(f'{e}\n'
+                            f'{y} is not in the table_format[1].')
+
+    target_sheet.cell(row_idx, column_idx).value = value
+    excel.save(file)
+    excel.close()
+
+
+
+
+
+
 
 
 

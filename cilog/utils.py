@@ -29,9 +29,9 @@ class CiLogStdOut(object):
 
     def __init__(self, logger):
         self.stdout = sys.stdout
-        self.stderr = sys.stderr
+        # self.stderr = sys.stderr
         sys.stdout = self
-        sys.stderr = self
+        # sys.stderr = self
         self.logger = logger
         self.buffer = ''
 
@@ -52,7 +52,42 @@ class CiLogStdOut(object):
                 getattr(self.logger, level)(buffer[match.span()[1]:])
                 return
 
+        # --- For fill_table ---
+
+
         self.logger.origin(buffer)
+        return
+
+class CiLogStdErr(object):
+
+    def __init__(self, logger):
+        # self.stdout = sys.stdout
+        self.stderr = sys.stderr
+        # sys.stdout = self
+        sys.stderr = self
+        self.logger = logger
+        self.buffer = ''
+
+    def write(self, string):
+
+        self.buffer += string
+
+    def flush(self):
+        if not self.buffer:
+            return
+
+        buffer = self.buffer
+        self.buffer = ''
+
+        # if re.match('\r|(\n\r)', buffer):
+        #     self.logger.info(buffer)
+        # else:
+        #     self.logger.error(buffer)
+        if re.match('Traceback', buffer):
+            self.logger.error(buffer)
+        else:
+            self.logger.origin(buffer)
+
         return
 
 

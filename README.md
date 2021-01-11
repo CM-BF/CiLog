@@ -19,6 +19,46 @@ $ pip install cilog
 
 ## New Features
 
+### 1.2.0
+* Add SUPPORT for excel table filling.
+Usage:
+```python
+from cilog import fill_table
+
+
+table_format = [['A', 'B', 'C', 'D', 'E', 'F', 'G'],
+                ['da', 'db', 'dc', 'de'],
+                ['sa', 'sb', 'sc', 'sd', 'sf']]
+
+fill_table('./excel_test.xlsx', value='0.4013', x='C', y='db', z='sd', table_format=table_format)
+```
+![fill_table](./figures/fill_table.png)
+
+### 1.1.5
+* Add SUPPORT for error logging(such as `raise ***`), all the error message will go though the
+logger.error process. Note that you have to use set flag `sub_print=True` in `create_logger()`
+to use this function.
+* Fix bug with package tqdm
+
+### 1.1.4
+* Tabular print SUPPORT: `print(f'#T#!latex{table_list}')` for latex format table string 
+or `print(f'#T#{table_list}')` for markdown format table string.
+
+### 1.1.3
+* Bug fixed
+
+### 1.1.2
+* Automatically install dependencies when first running.
+
+### 1.1.1
+* bug fixed
+
+### 1.1.0
+* Add origin level. When we use sub_print=True, `print(f'string')` will act like normal builtin print
+function. Other levels like `info`, `debug` and `mail`, etc, should be specified by special notation
+like `#IN#`, `#D#` and `#M#`, etc.
+* Support Table print in markdown format or latex format for data scientists.
+
 ### 1.0.2
 * Bug fixed
 
@@ -145,7 +185,7 @@ return: logger : CustomLogger
 The only step you shoud do is:
 ```python
 from cilog import create_logger
-logger = create_logger(sub_print=True)
+create_logger(sub_print=True)
 
 # Then: you can even execute the following scripts 
 # in other files if only you have run these two lines
@@ -169,6 +209,64 @@ You can use print everywhere which actually use the logger
 you created to output! Meanwhile, you can use any `print` features,
 like `end=*` or `sep=* ...` but do not use `file=*`, because the logger
 only monitor the standard output.
+
+**Elaborate Example:**
+
+```python
+from cilog import create_logger
+
+
+def call_error():
+    print('#E#Exception')
+
+'''
+mail_setting = {
+            mailhost:   string or tuple - YourMailHost or (host, port),
+            fromaddr:   string          - YourSenderAddress,
+            toaddrs:    list(string)    - List of YourTargetAddresses,
+            subject:    string          - Mail Subject,
+            credentials:tuple           - (YourUsername, YourPassword),
+            secure:     tuple           - () or (KeyfileName) or (KeyfileName, CertificatefileName)
+                                            use the secure protocol (TLS),
+            timeout:    float           - Default 1.0
+        }
+'''
+mail_setting = {
+    'mailhost': ('*****', int(**)),
+    'fromaddr': '****@*****',
+    'toaddrs': ['****@****', '***@***'],
+    'subject': 'CiLog test',
+    'credentials': ('***@**', '****')
+}
+create_logger(name='l1', file='./log.log', enable_mail=True,
+                       mail_setting=mail_setting, sub_print=True)
+# The simplest usage `create_logger(sub_print=True)`
+print('origin')
+table_list = [['Tox21', 'Clintox'], [1, 2], [3, 4]]
+print(f'#t#{table_list}')   # print table in markdown format
+# |   Tox21 |   Clintox |
+# |--------:|----------:|
+# |       1 |         2 |
+# |       3 |         4 |
+
+print(f'#t#!latex{table_list}') # latex format table
+# \begin{tabular}{rr}
+# \toprule
+#  Tox21 &  Clintox \\
+# \midrule
+#      1 &        2 \\
+#      3 &        4 \\
+# \bottomrule
+# \end{tabular}
+
+print('#IN#start')
+print('#D#here')
+print('#W#warn')
+call_error()
+print('#C#Program exit.')
+print('#IM#lal')
+# print('#M#test')
+```
 
 ### Command line usage
 
