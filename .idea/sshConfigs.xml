@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" connectionConfig="{&quot;serverAliveInterval&quot;:300}" host="www.citrine.top" id="a19fac80-551c-437b-adf9-bae790372e5e" port="3022" customName="ssh://citrine@www.citrine.top:3022/home/citrine/anaconda3/envs/torch_v1.5/bin/python" nameFormat="CUSTOM" username="citrine">
+        <option name="customName" value="ssh://citrine@www.citrine.top:3022/home/citrine/anaconda3/envs/torch_v1.5/bin/python" />
+      </sshConfig>
+    </configs>
+  </component>
+</project>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="d2907f7b-5d04-4f87-86b0-82f97b7ea781" name="shurui.gui@dive6.engr.tamu.edu:22" url="http:///">
+        <fileTransfer accessType="SFTP" host="dive6.engr.tamu.edu" port="22" sshConfigId="37cbc116-2329-470a-ac0d-6150ed46ee94" sshConfig="shurui.gui@dive6.engr.tamu.edu:22 agent" authAgent="true" />
+      </webServer>
+    </option>
+  </component>
+</project>

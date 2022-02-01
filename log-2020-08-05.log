@@ -1,0 +1,101 @@
+INFO: start
+WARNING: test.py - line 18 : warn
+ERROR: 07/29/2020 10:26:19 AM - test.py - line 13 : Exception
+  File "/home/citrine/Projects/citrine/Clog/test.py", line 19, in <module>
+    call_error()
+  File "/home/citrine/Projects/citrine/Clog/test.py", line 13, in call_error
+    logger.error('Exception')
+  File "/home/citrine/anaconda3/envs/torch_v1.5/lib/python3.8/logging/__init__.py", line 1463, in error
+    self._log(ERROR, msg, args, **kwargs)
+
+CRITICAL: 07/29/2020 10:26:19 AM : fatal error
+  File "/home/citrine/Projects/citrine/Clog/test.py", line 20, in <module>
+    logger.critical('fatal error')
+  File "/home/citrine/anaconda3/envs/torch_v1.5/lib/python3.8/logging/__init__.py", line 1481, in critical
+    self._log(CRITICAL, msg, args, **kwargs)
+
+INFO: start
+WARNING: test.py - line 18 : warn
+ERROR: 07/29/2020 10:26:28 AM - test.py - line 13 : Exception
+  File "/home/citrine/Projects/citrine/Clog/test.py", line 19, in <module>
+    call_error()
+  File "/home/citrine/Projects/citrine/Clog/test.py", line 13, in call_error
+    logger.error('Exception')
+  File "/home/citrine/anaconda3/envs/torch_v1.5/lib/python3.8/logging/__init__.py", line 1463, in error
+    self._log(ERROR, msg, args, **kwargs)
+
+CRITICAL: 07/29/2020 10:26:28 AM : fatal error
+  File "/home/citrine/Projects/citrine/Clog/test.py", line 20, in <module>
+    logger.critical('fatal error')
+  File "/home/citrine/anaconda3/envs/torch_v1.5/lib/python3.8/logging/__init__.py", line 1481, in critical
+    self._log(CRITICAL, msg, args, **kwargs)
+
+INFO: start
+WARNING: test.py - line 18 : warn
+ERROR: 07/29/2020 10:30:03 AM - test.py - line 13 : Exception
+  File "/home/citrine/Projects/citrine/Clog/test.py", line 19, in <module>
+    call_error()
+  File "/home/citrine/Projects/citrine/Clog/test.py", line 13, in call_error
+    logger.error('Exception')
+
+CRITICAL: 07/29/2020 10:30:03 AM : fatal error
+  File "/home/citrine/Projects/citrine/Clog/test.py", line 20, in <module>
+    logger.critical('fatal error')
+
+INFO: start
+WARNING: test.py - line 19 : warn
+ERROR: 07/29/2020 01:48:21 PM - test.py - line 13 : Exception
+  File "/home/citrine/Projects/citrine/CiLog/test.py", line 20, in <module>
+    call_error()
+  File "/home/citrine/Projects/citrine/CiLog/test.py", line 13, in call_error
+    logger.error('Exception')
+
+CRITICAL: 07/29/2020 01:48:21 PM : fatal error
+  File "/home/citrine/Projects/citrine/CiLog/test.py", line 21, in <module>
+    logger.critical('fatal error')
+
+INFO: start
+WARNING: test.py - line 19 : warn
+ERROR: 08/03/2020 09:45:32 AM - test.py - line 13 : Exception
+  File "/home/citrine/Projects/citrine/CiLog/test.py", line 20, in <module>
+    call_error()
+  File "/home/citrine/Projects/citrine/CiLog/test.py", line 13, in call_error
+    logger.error('Exception')
+
+IMPORTANT: 08/03/2020 09:45:32 AM : fatal error
+INFO: start
+WARNING: test.py - line 19 : warn
+ERROR: 08/04/2020 11:23:01 AM - test.py - line 13 : Exception
+  File "/home/citrine/Projects/citrine/CiLog/test.py", line 20, in <module>
+    call_error()
+  File "/home/citrine/Projects/citrine/CiLog/test.py", line 13, in call_error
+    logger.error('Exception')
+
+IMPORTANT: 08/04/2020 11:23:01 AM : fatal error
+INFO: start
+WARNING: test.py - line 18 : warn
+ERROR: 08/04/2020 11:24:36 AM - test.py - line 13 : Exception
+  File "/home/citrine/Projects/citrine/CiLog/test.py", line 19, in <module>
+    call_error()
+  File "/home/citrine/Projects/citrine/CiLog/test.py", line 13, in call_error
+    logger.error('Exception')
+
+IMPORTANT: 08/04/2020 11:24:36 AM : fatal error
+INFO: start
+WARNING: test.py - line 18 : warn
+ERROR: 08/04/2020 11:25:18 AM - test.py - line 13 : Exception
+  File "/home/citrine/Projects/citrine/CiLog/test.py", line 19, in <module>
+    call_error()
+  File "/home/citrine/Projects/citrine/CiLog/test.py", line 13, in call_error
+    logger.error('Exception')
+
+IMPORTANT: 08/04/2020 11:25:18 AM : Program exit.
+INFO: start
+WARNING: test.py - line 18 : warn
+ERROR: 08/05/2020 09:13:34 PM - test.py - line 13 : Exception
+  File "/home/citrine/Projects/citrine/CiLog/test.py", line 19, in <module>
+    call_error()
+  File "/home/citrine/Projects/citrine/CiLog/test.py", line 13, in call_error
+    logger.error('Exception')
+
+IMPORTANT: 08/05/2020 09:13:34 PM : Program exit.
