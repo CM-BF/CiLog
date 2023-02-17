@@ -108,8 +108,8 @@ class CustomLogger(logging.Logger):
             if format == 'latex':
                 table = df.to_latex(index=False, escape=False)
 
-            self._log(logging.ORIGIN, table, args, **kwargs)
-            self._log(logging.ORIGIN, '\n', args, **kwargs)
+            self._log(logging.TABLELIST, table, args, **kwargs)
+            self._log(logging.TABLELIST, '\n', args, **kwargs)
 
 
     def mail(self, msg, *args, **kwargs):

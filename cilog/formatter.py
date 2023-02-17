@@ -48,6 +48,7 @@ class CustomFormatter(logging.Formatter):
                 'INFO': "%(levelname)s: $BOLD%(message)s$RESET",
                 'WARNING': "%(levelname)s: %(filename)s - line %(lineno)d : $BOLD%(message)s$RESET",
                 'IMPORTANT': "%(levelname)s: %(asctime)s : $BOLD%(message)s$RESET",
+                'TABLELIST': "%(message)s",
                 'ERROR': "%(levelname)s: %(asctime)s - %(filename)s - line %(lineno)d : $BOLD%(message)s$RESET",
                 'CRITICAL': "%(levelname)s: %(asctime)s - %(filename)s - line %(lineno)d : $BOLD%(message)s$RESET",
                 'MAIL': "%(levelname)s: %(asctime)s : $BOLD%(message)s$RESET"

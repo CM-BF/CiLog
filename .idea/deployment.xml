@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="shurui.gui@dive6.engr.tamu.edu:22" autoUploadExternalChanges="true">
+  <component name="PublishConfigData" autoUpload="Always" serverName="DIVE5" confirmBeforeUploading="false" autoUploadExternalChanges="true">
+    <option name="confirmBeforeUploading" value="false" />
     <serverData>
-      <paths name="shurui.gui@dive6.engr.tamu.edu:22">
+      <paths name="DIVE5">
         <serverdata>
           <mappings>
-            <mapping deploy="/data/shurui.gui/Projects/citrine/CiLog" local="$PROJECT_DIR$" />
+            <mapping deploy="/CiLog" local="$PROJECT_DIR$" />
           </mappings>
         </serverdata>
       </paths>
